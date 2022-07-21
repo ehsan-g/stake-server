@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DataFieldsOnly } from '../utils/types';
 import { BigQueryTransaction } from '../data/entities/BigQueryTransaction';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class BigQueryService {
@@ -11,6 +11,15 @@ export class BigQueryService {
     private bigQueryRepository: Repository<BigQueryTransaction>,
   ) {}
 
+  googleLogin(req) {
+    if (!req.user) {
+      return 'No user from google';
+    }
+    return {
+      message: 'User Info from Google',
+      user: req.user,
+    };
+  }
   // Create a new  transaction and save it to the database
 
   async createTransaction(
@@ -18,23 +27,5 @@ export class BigQueryService {
   ): Promise<BigQueryTransaction> {
     const saved = await this.bigQueryRepository.save(transaction);
     return saved;
-  }
-
-  // Get all the transactions
-
-  async getTransactions(
-    transactionStatuses?: string,
-  ): Promise<BigQueryTransaction[]> {
-    if (transactionStatuses) {
-      const statuses = transactionStatuses.split(',');
-
-      return await this.bigQueryRepository.find({
-        where: {
-          transactionStatus: In(statuses),
-        },
-      });
-    } else {
-      return await this.bigQueryRepository.find();
-    }
   }
 }

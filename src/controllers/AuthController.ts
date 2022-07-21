@@ -3,18 +3,16 @@ import { ApiTags } from '@nestjs/swagger';
 import { BigQueryService } from '../services/BigQueryService';
 import { AuthGuard } from '@nestjs/passport';
 
-export const VALID_HEALTHCHECK_MESSAGE = 'OK';
-
 @ApiTags('BigQuery')
-@Controller('BigQuery')
-export class BigQueryController {
+@Controller()
+export class AuthController {
   constructor(private bigQueryService: BigQueryService) {}
 
   @Get()
   @UseGuards(AuthGuard('google'))
   async googleAuth(@Req() req) {}
 
-  @Get('transaction')
+  @Get('auth/google/callback')
   @UseGuards(AuthGuard('google'))
   googleAuthRedirect(@Req() req) {
     console.log(req);

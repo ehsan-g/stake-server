@@ -6,7 +6,12 @@ async function startServer() {
 
   app.enableShutdownHooks();
 
-  await app.listen(3001);
+  app.enableCors();
+  app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+  await app.listen(5000);
 }
 
 async function stopServer() {
