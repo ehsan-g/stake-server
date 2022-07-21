@@ -11,14 +11,10 @@ export class BigQueryService {
     private bigQueryRepository: Repository<BigQueryTransaction>,
   ) {}
 
-  googleLogin(req) {
-    if (!req.user) {
-      return 'No user from google';
-    }
-    return {
-      message: 'User Info from Google',
-      user: req.user,
-    };
+  // Create a new  transaction and save it to the database
+
+  async getTransaction(): Promise<BigQueryTransaction> {
+    return;
   }
   // Create a new  transaction and save it to the database
 

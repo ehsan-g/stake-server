@@ -5,10 +5,11 @@ import { BigQueryController } from '../controllers/BigQueryController';
 import { BigQueryService } from '../services/BigQueryService';
 import { GoogleStrategy } from 'src/strategy/GoogleStrategy';
 import { AuthController } from 'src/controllers/AuthController';
+import { AuthService } from 'src/services/AuthService';
 
 @Module({
   imports: [TypeOrmModule.forFeature([BigQueryTransaction])],
   controllers: [AuthController, BigQueryController],
-  providers: [BigQueryService, GoogleStrategy],
+  providers: [AuthService, BigQueryService, GoogleStrategy],
 })
 export class BigQueryModule {}

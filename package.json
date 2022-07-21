@@ -29,7 +29,6 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
-    "@googleapis/docs": "^1.0.1",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/passport": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
@@ -47,7 +46,6 @@
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "googleapis": "^105.0.0",
     "jest": "28.1.2",
     "mysql2": "^2.3.3",
     "nestjs-pino": "^3.1.0",

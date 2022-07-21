@@ -1,12 +1,12 @@
 import { Controller, Get, UseGuards, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { BigQueryService } from '../services/BigQueryService';
 import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from 'src/services/AuthService';
 
 @ApiTags('BigQuery')
 @Controller()
 export class AuthController {
-  constructor(private bigQueryService: BigQueryService) {}
+  constructor(private authService: AuthService) {}
 
   @Get()
   @UseGuards(AuthGuard('google'))
@@ -16,6 +16,6 @@ export class AuthController {
   @UseGuards(AuthGuard('google'))
   googleAuthRedirect(@Req() req) {
     console.log(req);
-    return this.bigQueryService.googleLogin(req);
+    return this.authService.googleLogin(req);
   }
 }

@@ -1,7 +1,6 @@
-import { Controller, Get, UseGuards, Req } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, UseGuards, Req, Param } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { BigQueryService } from '../services/BigQueryService';
-import { AuthGuard } from '@nestjs/passport';
 
 export const VALID_HEALTHCHECK_MESSAGE = 'OK';
 
@@ -10,14 +9,10 @@ export const VALID_HEALTHCHECK_MESSAGE = 'OK';
 export class BigQueryController {
   constructor(private bigQueryService: BigQueryService) {}
 
-  @Get()
-  @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {}
-
-  @Get('transaction')
-  @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
-    console.log(req);
-    return this.bigQueryService.googleLogin(req);
+  @Get(`transaction/:id`)
+  @ApiOperation({ description: 'Get a single transaction by ID' })
+  async getTransaction(@Param('id') id: string) {
+    // FIXME - Done
+    return await this.bigQueryService.getTransaction();
   }
 }
