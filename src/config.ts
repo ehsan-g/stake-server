@@ -9,7 +9,7 @@ function loadConfig() {
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'postgres',
+      database: 'stakefish',
       enabled: true,
       synchronize: true,
       logging: true,
