@@ -7,9 +7,15 @@ import { BigQueryService } from '../services/BigQueryService';
 export class BigQueryController {
   constructor(private bigQueryService: BigQueryService) {}
 
-  @Get(`transaction`)
+  @Get(`transaction/fetch`)
   @ApiOperation({ description: 'Get a single transaction by ID' })
   async getTransaction() {
     return await this.bigQueryService.getTransactions();
+  }
+
+  @Get(`transaction/create`)
+  @ApiOperation({ description: 'Create tables from BigQuery' })
+  async saveToDatabase() {
+    return await this.bigQueryService.saveToDatabase();
   }
 }

@@ -7,8 +7,8 @@ export class BigQueryTransaction extends BaseEntity {
   id: string;
 
   @Column({ nullable: true })
-  transactionHash: string;
+  number: number;
 
   @Column({ nullable: true })
-  transactionStatus: string;
+  block_interval: number;
 }
