@@ -55,12 +55,20 @@ export class BigQueryService {
     const transactions: DbTransaction[] = [];
     for (let i = 0; i < rows.length; i++) {
       const transaction = {
+        timestamp: rows[i].timestamp.value,
         number: rows[i].number,
         block_interval: rows[i].block_interval_in_seconds,
       };
       transactions.push(transaction);
     }
 
+    return transactions;
+  }
+
+  // Create a new  transaction and save it to the database
+
+  async getDbTransactions(): Promise<BigQueryTransaction[]> {
+    const transactions = await this.bigQueryRepository.find();
     return transactions;
   }
 
